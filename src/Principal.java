@@ -1,4 +1,12 @@
+
+
+import controller.CandidatoController;
+import controller.PesquisaController;
+import controller.TipoPesquisaController;
 import model.Candidato;
+import model.Pesquisa;
+import model.TipoPesquisa;
+import java.time.LocalDate;
 
 public class Principal {
 	
