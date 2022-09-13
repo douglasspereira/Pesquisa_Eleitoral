@@ -31,7 +31,7 @@ public class CandidatoDao {
 	public void salvar(Candidato candidato) {
 		try {
 //			Connection conexao = ConnectionUtil.getConnection();
-			String sql = "insert into candidato (idcandidato, nome, ficha_limpa, partido) values (?, ?, ?, ?)";
+			String sql = "insert into candidato (id, nome, ficha_limpa, partido) values (?, ?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, candidato.getId());
 			pstmt.setString(2, candidato.getNome());
@@ -52,7 +52,7 @@ public class CandidatoDao {
 			pstmt.setString(1, candidato.getNome());
 			pstmt.setString(2, candidato.getFichaLimpa());
 			pstmt.setString(3, candidato.getPartido());
-			pstmt.setInt(3, candidato.getId());
+			pstmt.setInt(4, candidato.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

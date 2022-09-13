@@ -73,8 +73,5 @@ public class TipoPesquisa {
 	public String toString(){
 		return instituto + " - " + dataPesquisa + " - " + local + " - " + mediaIdade + " - " + tipoPesquisa + " - " + descricao;
 	}
-
-
-	
 	
 }
