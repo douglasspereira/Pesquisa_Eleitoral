@@ -20,13 +20,13 @@ public class Principal {
 	
 	public static void main(String[] args) {
 		
-		listar();
+		listaPesquisa();
 		System.out.println("-------------------------------");
 //		salvar();
 //		atualizar();
-		excluir();
-		listar();
-		System.out.println("-------------------------------");
+//		excluir();
+//		listar();
+//		System.out.println("-------------------------------");
 			
 	//	testeCandidato();
 	//	testeTipoPesquisa();
@@ -103,6 +103,19 @@ public class Principal {
 		
 		for (Candidato c : controller.listar()) {
 			System.out.println(c.toString());
+		}
+	}
+	
+	public static void listaPesquisa() {
+		PesquisaController controller = new PesquisaController();
+		try {
+			controller.listar();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		for (Pesquisa p : controller.listar()) {
+			System.out.println(p.toString());
 		}
 	}
 

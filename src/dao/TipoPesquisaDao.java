@@ -91,7 +91,7 @@ public class TipoPesquisaDao {
 				tp.setLocal(rs.getString("local"));
 				tp.setMediaIdade(rs.getDouble("media_idade"));
 				tp.setLocal(rs.getString("tipo_pesquisa"));
-				tp.setLocal(rs.getString("descricao"));
+				tp.setDescricao(rs.getString("descricao"));
 				listaTiposPesquisa.add(tp);
 			}
 		} catch (SQLException e) {

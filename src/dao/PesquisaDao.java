@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.Candidato;
 import model.Pesquisa;
 import model.TipoPesquisa;
 import util.ConnectionUtil;
@@ -31,8 +32,8 @@ public class PesquisaDao {
 			String sql = "insert into pesquisa (id, candidato_id, tipo_pesquisa_id, votos) values (?, ?, ?, ?)";
 			PreparedStatement pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, pesquisa.getId());
-			pstmt.setObject(2, pesquisa.getCandidatos()); ;
-			pstmt.setObject(3, pesquisa.getPesquisa()); ;
+			pstmt.setInt(2, pesquisa.getCandidato().getId()); ;
+			pstmt.setInt(3, pesquisa.getPesquisa().getId()); ;
 			pstmt.setInt(4, pesquisa.getVotos());
 			pstmt.execute();
 		} catch (SQLException e) {
@@ -45,8 +46,8 @@ public class PesquisaDao {
 //			Connection conexao = ConnectionUtil.getConnection();
 			String sql = "update pesquisa set candidato_id = ?, tipo_pesquisa_id = ?, votos = ? where id = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);
-			pstmt.setObject(1, pesquisa.getCandidatos());
-			pstmt.setObject(2, pesquisa.getCandidatos()); ;
+			pstmt.setInt(1, pesquisa.getCandidato().getId());
+			pstmt.setInt(2, pesquisa.getCandidato().getId()); ;
 			pstmt.setObject(3, pesquisa.getPesquisa()); ;
 			pstmt.setInt(4, pesquisa.getVotos());
 			pstmt.setInt(5, pesquisa.getId());
@@ -69,25 +70,31 @@ public class PesquisaDao {
 	}
 	
 	public List<Pesquisa> listar(){
-		List<Pesquisa> listaPesquisa = new ArrayList<>();
+		
 		try {
-//			Connection conexao = ConnectionUtil.getConnection();
-			String sql = "select * from pesquisa";
-			Statement stmt = con.createStatement();
+			String sql = "select id, c.id_candidato, votos from pesquisa p join candidato c on p.id_candidato = c.id_candidato";
+			Statement stmt = con.createStatement(sql);
 			ResultSet rs = stmt.executeQuery(sql);
+			ArrayList<pesquisa> listaPesquisa = new ArrayList<Pesquisa>();
+			
 			while(rs.next()) {
-				Pesquisa p = new Pesquisa();
-				p.setId(rs.getInt("id"));
-				p.setCandidatos(null); // não entendi como fazer aqui
-				p.setPesquisa(null); // não entendi como fazer aqui
-				p.setVotos(rs.getInt("votos"));
-				listaPesquisa.add(p);
+				Pesquisa pesquisa = new Pesquisa();
+				pesquisa.setId(rs.getInt("id"));
+				pesquisa.setVotos(rs.getInt("votos"));
+				
+				Candidato c = new Candidato();
+				c.setId(rs.getInt("id"));
+				listaPesquisa.add(pesquisa);
+
 			}
+			
+			return listaPesquisa;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return listaPesquisa;
+		return null;
 
 	}
 	

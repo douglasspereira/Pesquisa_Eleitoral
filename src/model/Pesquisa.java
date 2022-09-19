@@ -3,14 +3,14 @@ package model;
 public class Pesquisa {
 	
 	private int id;
-	private Candidato candidatos;
-	private TipoPesquisa pesquisa;
+	private Candidato candidato;
+	private TipoPesquisa tipopesquisa;
 	private int votos;
 	
-	public Pesquisa(int id, Candidato candidatos, TipoPesquisa pesquisa, int votos) {
+	public Pesquisa(int id, Candidato candidato, TipoPesquisa tipoPesquisa, int votos) {
 		this.id = id;
-		this.candidatos = candidatos;
-		this.pesquisa = pesquisa;
+		this.candidato = candidato;
+		this.tipopesquisa = tipoPesquisa;
 		this.votos = votos;
 	}
 	
@@ -21,30 +21,33 @@ public class Pesquisa {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Candidato getCandidatos() {
-		return candidatos;
+
+	public Candidato getCandidato() {
+		return candidato;
 	}
-	public void setCandidatos(Candidato candidatos) {
-		this.candidatos = candidatos;
+
+	public void setCandidato(Candidato candidato) {
+		this.candidato = candidato;
 	}
+
 	public TipoPesquisa getPesquisa() {
-		return pesquisa;
+		return tipopesquisa;
 	}
-	public void setPesquisa(TipoPesquisa pesquisa) {
-		this.pesquisa = pesquisa;
+
+	public void setPesquisa(TipoPesquisa tipoPesquisa) {
+		this.tipopesquisa = tipoPesquisa;
 	}
+
 	public int getVotos() {
 		return votos;
 	}
+
 	public void setVotos(int votos) {
 		this.votos = votos;
-	}
-	
-	public String toString(){
-		return id + " - " + votos;
 	}
 
 }
